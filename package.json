@@ -2,10 +2,12 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
+    "build": "npm run build:css && remix build",
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "deploy": "wrangler publish",
     "dev:remix": "remix watch",
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
     "dev": "remix build && run-p \"dev:*\"",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "typecheck": "tsc -b"
